@@ -20,7 +20,7 @@ struct ContentView: View {
   }
   
   var body: some View {
-    return NavigationView {
+    NavigationView {
       ZStack(alignment: .leading) {
         Color.black
         Text("January 5 2020")
