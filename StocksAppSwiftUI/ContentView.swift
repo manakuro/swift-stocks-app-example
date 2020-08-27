@@ -35,6 +35,21 @@ struct ContentView: View {
         
         StockListView(stocks: self.stockListVM.filteredStocks)
           .offset(y: 150)
+        
+        
+        NewsArticleView(
+          newsArticles: self.stockListVM.news,
+          onDragBegin: { value in
+            self.stockListVM.dragOffset = value.translation
+          },
+          onDragEnd: { value in
+            self.stockListVM.dragOffset = value.translation.height < 0
+              ? CGSize(width: 0, height: 100)
+              : CGSize(width: 0, height: 700)
+        })
+        .animation(.spring())
+        .offset(y: self.stockListVM.dragOffset.height)
+        
       }.navigationBarTitle("Stocks")
       
         
